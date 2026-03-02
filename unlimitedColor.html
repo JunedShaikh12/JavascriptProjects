@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unlimited color</title>
+</head>
+<style>
+    .circle {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: gray;
+  margin-top: 20px;
+}
+</style>
+<body>
+    <h1>Unlimited Colors</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <div class="circle"></div>
+</body>
+<script>
+
+function changeColor() {
+    let color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    document.querySelector('.circle').style.backgroundColor = color;
+}
+
+document.querySelector('#start').addEventListener('click', function() {
+    intervalId = setInterval(changeColor, 1000);
+});
+document.querySelector('#stop').addEventListener('click', function() {
+    clearInterval(intervalId);
+    intervalId = null
+})
+</script>
+</html> 

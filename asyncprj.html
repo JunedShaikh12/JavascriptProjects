@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>ASYNC PROJECT</h1>
+    <button id="stop">Stop</button>
+    <button id="stopinter">Stop interval</button>
+</body>
+<script>
+const sayJuned = function(){
+    console.log('Hi Juned'); 
+}
+setTimeout(sayJuned, 2000)
+function setPrjname(){
+    document.querySelector('h1').innerHTML  = 'Best Async Project';
+}
+const clearMe = setTimeout(setPrjname , 3000)
+document.getElementById('stop').addEventListener('click' , function() {
+    clearTimeout(clearMe);
+    console.log('In clearTimeout');
+})
+const againsayJuned = function(){
+    console.log('Helloooo Juned'); 
+}
+const clearinter = setInterval(againsayJuned, 3000)
+
+document.getElementById('stopinter').addEventListener('click', function() {
+    clearInterval(clearinter);
+    console.log('In clearInterval');
+})
+</script>
+</html>
