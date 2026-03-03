@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="convertBlob()">Convert Blob to Base64</button>
+</body>
+<script>
+      function convertBlob() {
+      const text = "Ich bin Juned. Ich lerne deutsch.";
+      const blob = new Blob([text], {type: "plain/text"});
+
+      const reader = new FileReader();
+      reader.onload = function () {
+        const base64Code = reader.result.split(',')[1];
+           console.log('Base64 Code : ' , base64Code);
+           const decodedText = atob(base64Code);
+              console.log('Decoded Text : ' , decodedText);
+      }
+           reader.readAsDataURL(blob);
+
+
+
+ 
+     //++++++++++++++++++++++ From normal string to base64 and back ++++++++++++++++++++++++
+
+    // const text = 'olaa muhh taale talle uhhh, tidi ding ding didi ding'
+    // const Btoa = btoa(text);
+    // console.log('Base64 Code : ' , Btoa);
+    // const decodedText = atob(Btoa);
+    // console.log('Decoded Text : ' , decodedText);
+
+     }
+</script>
+</html>
