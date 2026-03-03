@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>OBJECT TO JSON and then download</h2>
+    <button onclick="downloadObj()">downloadJSON</button>
+</body>
+<script>
+function downloadObj() {
+    
+    // ++++++++++++++++++++ object to json and then download +++++++++++++++++++++++
+
+    const user = {
+    name: 'JUNED Shaikh',
+    age: 25,
+    country: 'India',
+    language: ['javascript', 'HTML' , 'CSS' , 'MONGODB']
+}
+    const jsonString = JSON.stringify(user , null , 2);
+    const blob = new Blob([jsonString] , {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "user json";
+    a.click();
+}
+</script>
+</html>

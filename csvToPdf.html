@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table id="userTable">
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td>Juned</td>
+    <td>25</td>
+  </tr>
+  <tr>
+    <td>Aman</td>
+    <td>28</td>
+  </tr>
+  <tr>
+    <td>Raj</td>
+    <td>27</td>
+  </tr>
+  <tr>
+    <td>sham</td>
+    <td>20</td>
+  </tr>
+</table>
+    <button onclick="downloadCSV()">Download CSV</button>
+</body>
+<script>
+    function downloadCSV () {
+
+        // +++++++++++++ From normal static data ++++++++++++++++ 
+
+        // const csvData = "Name,Age\nJuned,25\nAman,28";
+        // console.log(csvData)
+        // const blob = new Blob([csvData], {type:'text/csv'});
+        // console.log(blob);
+        // const url = URL.createObjectURL(blob);
+        // console.log(url);
+        // const a = document.createElement('a')
+        // console.log(a);
+        // a.href = url;
+        // a.download = 'data.csv';
+        // a.click();
+        // URL.revokeObjectURL(url);
+
+
+        //+++++++++++++++++++++++ From HTML Table +++++++++++++++++++++++++
+        
+        const table = document.getElementById("userTable");
+          let csv = [];
+           for (let row of table.rows) {
+    let rowData = [];
+
+    for (let cell of row.cells) {
+      rowData.push(cell.innerText);
+    }
+
+    csv.push(rowData.join(","));
+  }
+
+   const csvString = csv.join("\n");
+
+  const blob = new Blob([csvString], { type: "text/csv" });
+
+  const url = URL.createObjectURL(blob);
+
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "table-data.csv";
+  a.click();
+
+  URL.revokeObjectURL(url);
+
+    }
+</script>
+</html>

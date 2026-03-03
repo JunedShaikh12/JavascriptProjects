@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>BLOB</h2>
+     <textarea name="textArea" id="userText" placeholder="Write something....."></textarea>
+     <br><br>
+     <button onclick="downLoadFile()">DownLoadFile</button>
+     </body>
+<script>
+
+function downLoadFile() {
+
+    //++++++++++++++++++++++  From user input to pdf ++++++++++++++++++++++++
+    
+    const text = document.getElementById('userText').value;
+    const blob = new Blob([text], {type: "text/plain"})
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a')
+    a.href = url;
+    a.download = 'hel.file';
+    a.click();
+}
+
+const obj = {name: 'JUNED Shaikh'}
+console.log(typeof obj);
+const convertedObj = JSON.stringify(obj, null, 2)
+console.log(convertedObj);
+
+    </script>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pdfGen</title>
+</head>
+<body>
+    
+<div style="padding:400px">
+        <button onclick="createPdf()">pdfGen</button>
+
+</div>    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script>
+        async function createPdf() {
+            const pdfGen = await PDFLib.PDFDocument.create();
+            console.log(pdfGen)
+            const page = pdfGen.addPage([600, 400]);
+            console.log(page)
+             page.drawText("Hello Juned!", {
+            x: 50,
+            y: 300,
+            size: 25
+        });
+    
+        }
+    </script>
+
+</body>
+</html>
