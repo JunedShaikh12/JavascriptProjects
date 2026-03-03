@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+ <h2>Bank Account Form</h2>
+<input type="text" id="name" placeholder="Full Name"><br><br>
+<input type="text" id="accountType" placeholder="Account Type"><br><br>
+<input type="text" id="ifsc" placeholder="IFSC Code"><br><br>
+
+<button onclick="generatePDF()">Download PDF</button>
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+async function generatePDF() {
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  // 📌 Get Form Data
+  const name = document.getElementById("name").value;
+  const accountType = document.getElementById("accountType").value;
+  const ifsc = document.getElementById("ifsc").value;
+
+  // 🏦 Header Section
+  doc.setFillColor(0, 51, 153);
+  doc.rect(0, 0, 210, 25, "F");  // Blue header background
+
+  doc.setTextColor(255, 255, 255);
+  doc.setFontSize(18);
+  doc.text("ABC NATIONAL BANK", 60, 15);
+
+  // Reset text color
+  doc.setTextColor(0, 0, 0);
+
+  // 📌 Section Title
+  doc.setFontSize(14);
+  doc.setTextColor(0, 51, 153);
+  doc.text("PERSONAL DETAILS", 20, 40);
+
+  // Draw box
+  doc.setDrawColor(0);
+  doc.rect(15, 45, 180, 30);
+
+  doc.setFontSize(12);
+  doc.setTextColor(0, 0, 0);
+  doc.text("Full Name: " + name, 20, 55);
+
+  // 📌 Account Section
+  doc.setTextColor(0, 100, 0);
+  doc.text("ACCOUNT DETAILS", 20, 90);
+
+  doc.setDrawColor(0);
+  doc.rect(15, 95, 180, 30);
+
+  doc.setTextColor(0, 0, 0);
+  doc.text("Account Type: " + accountType, 20, 105);
+  doc.text("IFSC Code: " + ifsc, 20, 115);
+
+  // 📌 Signature Box
+  doc.text("Signature:", 20, 145);
+  doc.rect(50, 135, 60, 20);
+
+  // 📌 Footer
+  doc.setFontSize(10);
+  doc.text("Generated on: " + new Date().toLocaleDateString(), 20, 280);
+
+  // 🔥 Download
+  doc.save("BankForm.pdf");
+}
+</script>
+</html>

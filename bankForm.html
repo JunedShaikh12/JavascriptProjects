@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SGI Bank Account Opening Form</title>
+  <link rel="stylesheet" href="bankForm.css">
+</head>
+<body>
+
+<div id="sgi-form-wrapper">
+
+<header id="sgi-form-header">
+  <div id="sgi-logo">SGI</div>
+  <div>
+    <h1>ACCOUNT OPENING FORM</h1>
+    <p>Customer Information Sheet</p>
+  </div>
+</header>
+
+<form id="sgi-account-form">
+
+<!-- PERSONAL DETAILS -->
+<section class="sgi-section">
+<h2>PERSONAL DETAILS</h2>
+
+<div class="sgi-grid-3">
+
+<div class="sgi-field">
+<label>Full Name</label>
+<input id="fullName" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Father / Mother Name</label>
+<input id="parentName" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Date of Birth</label>
+<input id="dob" type="date">
+</div>
+
+<div class="sgi-field">
+<label>Gender</label>
+<select id="gender">
+<option>Select</option>
+<option>Male</option>
+<option>Female</option>
+<option>Other</option>
+</select>
+</div>
+
+<div class="sgi-field">
+<label>Mobile</label>
+<input id="mobile" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Email</label>
+<input id="email" type="email">
+</div>
+
+<div class="sgi-field">
+<label>Occupation</label>
+<input id="occupation" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Annual Income</label>
+<input id="income" type="number">
+</div>
+
+</div>
+</section>
+
+<!-- KYC -->
+<section class="sgi-section">
+<h2>KYC DETAILS</h2>
+<div class="sgi-grid-3">
+
+<div class="sgi-field">
+<label>PAN</label>
+<input id="pan" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Aadhaar</label>
+<input id="aadhaar" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Passport</label>
+<input id="passport" type="text">
+</div>
+
+</div>
+</section>
+
+<!-- EMPLOYMENT -->
+<section class="sgi-section">
+<h2>EMPLOYMENT DETAILS</h2>
+
+<div class="sgi-grid-3">
+
+<div class="sgi-field">
+<label>Employment Type</label>
+<select id="employmentType">
+<option>Select</option>
+<option>Salaried</option>
+<option>Self-Employed</option>
+<option>Business</option>
+</select>
+</div>
+
+<div class="sgi-field">
+<label>Company Name</label>
+<input id="companyName" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Designation</label>
+<input id="designation" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Office Address</label>
+<input id="officeAddress" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Experience</label>
+<input id="experience" type="number">
+</div>
+
+</div>
+</section>
+
+<!-- ACCOUNT -->
+<section class="sgi-section">
+<h2>ACCOUNT DETAILS</h2>
+
+<div class="sgi-grid-3">
+
+<div class="sgi-field">
+<label>Account Type</label>
+<select id="accountType">
+<option>Savings</option>
+<option>Current</option>
+<option>Salary</option>
+</select>
+</div>
+
+<div class="sgi-field">
+<label>Mode of Operation</label>
+<select id="modeOfOperation">
+<option>Self</option>
+<option>Joint</option>
+</select>
+</div>
+
+<div class="sgi-field">
+<label>Initial Deposit</label>
+<input id="initialDeposit" type="number">
+</div>
+
+</div>
+</section>
+
+<!-- NOMINEE -->
+<section class="sgi-section">
+<h2>NOMINEE DETAILS</h2>
+
+<div class="sgi-grid-3">
+
+<div class="sgi-field">
+<label>Nominee Name</label>
+<input id="nomineeName" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Relationship</label>
+<input id="nomineeRelationship" type="text">
+</div>
+
+<div class="sgi-field">
+<label>Nominee DOB</label>
+<input id="nomineeDob" type="date">
+</div>
+
+<div class="sgi-field">
+<label>Nominee Contact</label>
+<input id="nomineeContact" type="text">
+</div>
+
+</div>
+</section>
+
+<!-- COMPLIANCE -->
+<section class="sgi-section">
+<h2>RISK & COMPLIANCE</h2>
+
+<label><input id="politicallyExposed" type="checkbox"> Politically Exposed</label>
+<label><input id="fatcaDeclaration" type="checkbox"> FATCA</label>
+<label><input id="aadhaarSeeding" type="checkbox"> Aadhaar Consent</label>
+
+</section>
+
+<section class="sgi-section">
+<label><input id="ideclare" type="checkbox"> I declare information is correct</label>
+</section>
+
+<button id="sgi-submit-btn" type="submit">SUBMIT APPLICATION</button>
+
+</form>
+</div>
+
+<script>
+document.getElementById("sgi-account-form").addEventListener("submit", function(e){
+e.preventDefault();
+
+const formData = {
+fullName: fullName.value,
+parentName: parentName.value,
+dob: dob.value,
+gender: gender.value,
+mobile: mobile.value,
+email: email.value,
+occupation: occupation.value,
+income: income.value,
+
+pan: pan.value,
+aadhaar: aadhaar.value,
+passport: passport.value,
+
+employmentType: employmentType.value,
+companyName: companyName.value,
+designation: designation.value,
+officeAddress: officeAddress.value,
+experience: experience.value,
+
+accountType: accountType.value,
+modeOfOperation: modeOfOperation.value,
+initialDeposit: initialDeposit.value,
+
+nomineeName: nomineeName.value,
+nomineeRelationship: nomineeRelationship.value,
+nomineeDob: nomineeDob.value,
+nomineeContact: nomineeContact.value,
+
+politicallyExposed: politicallyExposed.checked,
+fatcaDeclaration: fatcaDeclaration.checked,
+aadhaarSeeding: aadhaarSeeding.checked,
+ideclare: ideclare.checked
+};
+
+localStorage.setItem("sgiFormData", JSON.stringify(formData));
+window.location.href = "preview.html";
+});
+</script>
+
+</body>
+</html>

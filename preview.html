@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Preview - SGI Bank</title>
+    <link rel="stylesheet" href="preview.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<div class="preview-container">
+
+    <h1>ACCOUNT APPLICATION PREVIEW</h1>
+
+    <div class="preview-box">
+        <p><strong>Full Name:</strong> <span id="p-fullName"></span></p>
+        <p><strong>Parent Name:</strong> <span id="p-parentName"></span></p>
+        <p><strong>Date of Birth:</strong> <span id="p-dob"></span></p>
+        <p><strong>Mobile:</strong> <span id="p-mobile"></span></p>
+        <p><strong>Email:</strong> <span id="p-email"></span></p>
+        <p><strong>Occupation:</strong> <span id="p-occupation"></span></p>
+        <p><strong>Annual Income:</strong> <span id="p-income"></span></p>
+        <p><strong>Account Type:</strong> <span id="p-accountType"></span></p>
+        <p><strong>Mode of Operation:</strong> <span id="p-modeOfOperation"></span></p>
+        <p><strong>Initial Deposit:</strong> <span id="p-initialDeposit"></span></p>
+        <p><strong>Nominee Name:</strong> <span id="p-nomineeName"></span></p>
+        <p><strong>Nominee Relationship:</strong> <span id="p-nomineeRelationship"></span></p>
+        <p><strong>Nominee DOB:</strong> <span id="p-nomineeDob"></span></p>
+        <p><strong>Nominee Contact:</strong> <span id="p-nomineeContact"></span></p>
+        <p><strong>Politically Exposed:</strong> <span id="p-politicallyExposed"></span></p>
+        <p><strong>FATCA Declaration:</strong> <span id="p-fatcaDeclaration"></span></p>
+        <p><strong>Aadhaar Seeding:</strong> <span id="p-aadhaarSeeding"></span></p>
+        <p><strong>I Declare:</strong> <span id="p-ideclare"></span></p>
+    </div>
+
+    <button id="downloadPdfBtn">DOWNLOAD PDF</button>
+
+</div>
+
+<script>
+
+const data = JSON.parse(localStorage.getItem("sgiFormData"));
+
+if(data){
+    document.getElementById("p-fullName").innerText = data.fullName;
+    document.getElementById("p-parentName").innerText = data.parentName;
+    document.getElementById("p-dob").innerText = data.dob;
+    document.getElementById("p-mobile").innerText = data.mobile;
+    document.getElementById("p-email").innerText = data.email;
+    document.getElementById("p-occupation").innerText = data.occupation;
+    document.getElementById("p-income").innerText = data.income;
+    document.getElementById("p-accountType").innerText = data.accountType;
+    document.getElementById("p-modeOfOperation").innerText = data.modeOfOperation;
+    document.getElementById("p-initialDeposit").innerText = data.initialDeposit;    
+    document.getElementById("p-nomineeName").innerText = data.nomineeName;
+    document.getElementById("p-nomineeRelationship").innerText = data.nomineeRelationship;
+    document.getElementById("p-nomineeDob").innerText = data.nomineeDob;
+    document.getElementById("p-nomineeContact").innerText = data.nomineeContact;
+    document.getElementById("p-politicallyExposed").innerText = data.politicallyExposed ? "Yes" : "No";
+    document.getElementById("p-fatcaDeclaration").innerText = data.fatcaDeclaration ? "Yes" : "No";
+    document.getElementById("p-aadhaarSeeding").innerText = data.aadhaarSeeding ? "Yes" : "No";
+    document.getElementById("p-ideclare").innerText = data.ideclare ? "Yes" : "No"; 
+}
+
+document.getElementById("downloadPdfBtn").addEventListener("click", function(){
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text("SGI BANK - ACCOUNT OPENING FORM", 20, 20);
+
+    doc.setFontSize(12);
+    let y = 40;
+
+    doc.text("Full Name: " + data.fullName, 20, y); y += 8;
+    doc.text("Parent Name: " + data.parentName, 20, y); y += 8;
+    doc.text("DOB: " + data.dob, 20, y); y += 8;
+    doc.text("Mobile: " + data.mobile, 20, y); y += 8;
+    doc.text("Email: " + data.email, 20, y); y += 8;
+    doc.text("Occupation: " + data.occupation, 20, y); y += 8;
+    doc.text("Annual Income: " + data.income, 20, y);
+
+    const blob = doc.output("blob");
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "SGI_Account_Form.pdf";
+    a.click();
+
+    URL.revokeObjectURL(url);
+});
+
+</script>
+
+</body>
+</html>
